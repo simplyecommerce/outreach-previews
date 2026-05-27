@@ -19,56 +19,101 @@
   { "@context": "https://schema.org", "@type": "LocalBusiness", "name": "Billy Vernon Handyman", "description": "Family-run handyman services covering Taunton and the surrounding Somerset area.", "telephone": "07949 830689", "address": { "@type": "PostalAddress", "addressLocality": "Taunton", "addressRegion": "Somerset", "postalCode": "TA2", "addressCountry": "GB" }, "areaServed": "Taunton, Somerset" }
   </script>
   <style>
-    :root{--ink:#14202e;--ink-soft:#2a3a4e;--muted:#5b6b7d;--line:#e4e8ee;--bg:#fff;--bg-soft:#f6f8fb;--accent:#1f6f54;--accent-deep:#155741;--accent-ink:#fff;--radius:10px;--max:1120px;}
+    :root{--ink:#14202e;--ink-soft:#2a3a4e;--muted:#5b6b7d;--line:#e4e8ee;--bg:#fff;--bg-soft:#f6f8fb;--accent:#1f6f54;--accent-deep:#155741;--accent-light:#2a8868;--accent-ink:#fff;--dark:#0a131c;--dark-2:#14202e;--dark-3:#1c2a3a;--dark-text:#e6ebf2;--dark-text-muted:#8b97a7;--radius:10px;--max:1200px;}
     *{box-sizing:border-box;} html{scroll-behavior:smooth;}
     body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;}
     a{color:var(--accent);text-decoration:none;} a:hover{text-decoration:underline;}
     .container{width:100%;max-width:var(--max);margin:0 auto;padding:0 24px;}
-    .site-header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,0.92);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line);}
+    .icon{width:24px;height:24px;flex-shrink:0;}
+    .icon-sm{width:18px;height:18px;}
+    .topbar{background:var(--dark);color:var(--dark-text-muted);font-size:0.88rem;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);}
+    .topbar-inner{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+    .topbar-links{display:flex;gap:24px;align-items:center;flex-wrap:wrap;}
+    .topbar-link{display:inline-flex;align-items:center;gap:8px;color:var(--dark-text);text-decoration:none;}
+    .topbar-link:hover{color:#fff;text-decoration:none;}
+    .topbar-link .icon{stroke:var(--accent-light);}
+    .topbar-meta{display:inline-flex;align-items:center;gap:8px;}
+    .topbar-meta .icon{stroke:var(--accent-light);}
+    .site-header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,0.94);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line);}
     .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;}
-    .logo{font-size:1.15rem;font-weight:700;letter-spacing:-0.01em;color:var(--ink);}
-    .nav-links{display:flex;gap:28px;list-style:none;margin:0;padding:0;}
+    .logo{font-size:1.2rem;font-weight:700;letter-spacing:-0.01em;color:var(--ink);}
+    .nav-links{display:flex;gap:32px;list-style:none;margin:0;padding:0;}
     .nav-links a{color:var(--ink);font-weight:500;font-size:0.95rem;}
-    .nav-cta{background:var(--accent);color:var(--accent-ink);padding:10px 18px;border-radius:var(--radius);font-weight:600;font-size:0.95rem;}
+    .nav-cta{background:var(--accent);color:var(--accent-ink);padding:10px 20px;border-radius:var(--radius);font-weight:600;font-size:0.95rem;}
     .nav-cta:hover{text-decoration:none;opacity:0.92;}
-    .hero{position:relative;padding:120px 0 96px;background:radial-gradient(circle at 12% 18%,rgba(31,111,84,0.16),transparent 38%),radial-gradient(circle at 88% 78%,rgba(20,32,46,0.10),transparent 40%),linear-gradient(180deg,#f6f8fb 0%,#fff 100%);overflow:hidden;}
-    .hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none;z-index:0;}
-    .hero::before{width:380px;height:380px;background:rgba(31,111,84,0.12);top:-120px;right:-120px;}
-    .hero::after{width:280px;height:280px;background:rgba(20,32,46,0.10);bottom:-100px;left:-80px;}
-    .hero-inner{position:relative;z-index:1;max-width:780px;}
-    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(31,111,84,0.10);color:var(--accent-deep);border-radius:999px;font-size:0.85rem;font-weight:600;margin-bottom:22px;letter-spacing:0.01em;}
-    .eyebrow::before{content:"";width:6px;height:6px;background:var(--accent);border-radius:50%;}
-    .hero h1{font-size:clamp(2.1rem,5vw,3.5rem);line-height:1.1;margin:0 0 20px;letter-spacing:-0.025em;font-weight:700;color:var(--ink);}
-    .hero .lede{font-size:clamp(1.05rem,1.5vw,1.25rem);color:var(--ink-soft);margin:0 0 32px;max-width:620px;}
+    .hero{position:relative;padding:110px 0 96px;background:radial-gradient(circle at 18% 22%,rgba(31,111,84,0.22),transparent 42%),radial-gradient(circle at 86% 75%,rgba(56,212,245,0.10),transparent 45%),linear-gradient(180deg,var(--dark-2) 0%,var(--dark) 100%);color:var(--dark-text);overflow:hidden;}
+    .hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:0;}
+    .hero::before{width:420px;height:420px;background:rgba(31,111,84,0.20);top:-140px;right:-120px;}
+    .hero::after{width:320px;height:320px;background:rgba(56,212,245,0.12);bottom:-120px;left:-100px;}
+    .hero-inner{position:relative;z-index:1;}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.10);color:var(--dark-text);border-radius:999px;font-size:0.85rem;font-weight:600;margin-bottom:26px;letter-spacing:0.01em;}
+    .eyebrow::before{content:"";width:6px;height:6px;background:var(--accent-light);border-radius:50%;box-shadow:0 0 12px rgba(42,136,104,0.8);}
+    .hero h1{font-size:clamp(2.4rem,6vw,4.25rem);line-height:1.05;margin:0 0 22px;letter-spacing:-0.025em;font-weight:700;color:#fff;max-width:980px;}
+    .hero .lede{font-size:clamp(1.05rem,1.5vw,1.3rem);color:var(--dark-text-muted);margin:0 0 36px;max-width:760px;}
     .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
-    .btn-primary,.btn-secondary{display:inline-block;padding:14px 26px;border-radius:var(--radius);font-weight:600;font-size:1rem;}
-    .btn-primary{background:var(--accent);color:var(--accent-ink);box-shadow:0 8px 24px -8px rgba(31,111,84,0.45);}
-    .btn-secondary{background:#fff;color:var(--ink);border:1px solid var(--line);}
-    .btn-primary:hover,.btn-secondary:hover{text-decoration:none;opacity:0.92;}
-    .trust-row{display:flex;gap:24px;flex-wrap:wrap;margin-top:36px;padding-top:24px;border-top:1px solid rgba(20,32,46,0.08);font-size:0.92rem;color:var(--muted);}
-    .trust-item{display:inline-flex;align-items:center;gap:8px;}
-    .trust-item::before{content:"✓";color:var(--accent);font-weight:700;}
-    section{padding:64px 0;} .section-soft{background:var(--bg-soft);}
-    h2{font-size:clamp(1.6rem,3vw,2.2rem);margin:0 0 14px;letter-spacing:-0.015em;}
-    .section-lede{color:var(--muted);max-width:680px;margin:0 0 40px;}
-    .services{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
-    .service{background:var(--bg);border:1px solid var(--line);padding:28px;border-radius:var(--radius);}
-    .service h3{margin:0 0 8px;font-size:1.15rem;} .service p{margin:0;color:var(--muted);font-size:0.97rem;}
-    .about-grid{display:grid;gap:40px;grid-template-columns:1.2fr 1fr;align-items:center;}
-    .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:24px;background:var(--bg);border:1px solid var(--line);padding:32px;border-radius:var(--radius);}
-    .stat strong{display:block;font-size:2rem;color:var(--accent);font-weight:700;letter-spacing:-0.02em;}
+    .btn-primary,.btn-secondary{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:var(--radius);font-weight:600;font-size:1rem;}
+    .btn-primary{background:var(--accent);color:var(--accent-ink);box-shadow:0 12px 28px -10px rgba(31,111,84,0.6);}
+    .btn-primary:hover{text-decoration:none;background:var(--accent-light);}
+    .btn-secondary{background:transparent;color:var(--dark-text);border:1px solid rgba(255,255,255,0.20);}
+    .btn-secondary:hover{text-decoration:none;background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.32);}
+    .trust-row{display:flex;gap:28px;flex-wrap:wrap;margin-top:44px;padding-top:26px;border-top:1px solid rgba(255,255,255,0.08);font-size:0.95rem;color:var(--dark-text-muted);}
+    .trust-item{display:inline-flex;align-items:center;gap:10px;}
+    .trust-item .icon{stroke:var(--accent-light);}
+    section{padding:80px 0;} .section-soft{background:var(--bg-soft);}
+    h2{font-size:clamp(1.8rem,3.2vw,2.4rem);margin:0 0 14px;letter-spacing:-0.02em;}
+    .section-lede{color:var(--muted);max-width:720px;margin:0 0 48px;font-size:1.05rem;}
+    .services{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+    .service{background:var(--bg);border:1px solid var(--line);padding:32px 28px;border-radius:14px;transition:transform 0.18s ease,box-shadow 0.18s ease,border-color 0.18s ease;}
+    .service:hover{transform:translateY(-3px);box-shadow:0 18px 40px -22px rgba(20,32,46,0.18);border-color:rgba(31,111,84,0.30);}
+    .service-icon{width:52px;height:52px;display:inline-flex;align-items:center;justify-content:center;background:rgba(31,111,84,0.10);border-radius:12px;margin-bottom:20px;}
+    .service-icon .icon{width:28px;height:28px;stroke:var(--accent-deep);}
+    .service h3{margin:0 0 10px;font-size:1.2rem;letter-spacing:-0.01em;}
+    .service p{margin:0;color:var(--muted);font-size:0.97rem;}
+    .about-grid{display:grid;gap:48px;grid-template-columns:1.2fr 1fr;align-items:center;}
+    .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:24px;background:var(--bg);border:1px solid var(--line);padding:36px;border-radius:14px;}
+    .stat strong{display:block;font-size:2.15rem;color:var(--accent);font-weight:700;letter-spacing:-0.02em;line-height:1;margin-bottom:6px;}
     .stat span{color:var(--muted);font-size:0.92rem;}
-    .contact-card{background:var(--bg);border:1px solid var(--line);padding:40px;border-radius:var(--radius);max-width:640px;}
-    .contact-card dl{margin:0;display:grid;grid-template-columns:120px 1fr;gap:14px 20px;}
-    .contact-card dt{font-weight:600;color:var(--muted);font-size:0.9rem;} .contact-card dd{margin:0;}
-    footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:0.9rem;}
-    .footer-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center;}
-    .footer-links{display:flex;gap:22px;flex-wrap:wrap;}
-    .footer-links a{color:var(--muted);} .footer-links a:hover{color:var(--ink);text-decoration:underline;}
-    @media (max-width:720px){.nav-links{display:none;}.hero{padding:80px 0 64px;}.about-grid{grid-template-columns:1fr;}.contact-card dl{grid-template-columns:1fr;gap:6px 0;}.contact-card dt{margin-top:10px;}}
+    .contact-card{background:var(--bg);border:1px solid var(--line);padding:44px;border-radius:14px;max-width:680px;}
+    .contact-card dl{margin:0;display:grid;grid-template-columns:130px 1fr;gap:18px 24px;}
+    .contact-card dt{font-weight:600;color:var(--muted);font-size:0.85rem;text-transform:uppercase;letter-spacing:0.04em;display:inline-flex;align-items:center;gap:8px;}
+    .contact-card dt .icon{width:16px;height:16px;stroke:var(--accent);}
+    .contact-card dd{margin:0;font-size:1rem;}
+    footer{background:var(--dark);color:var(--dark-text-muted);padding:36px 0;font-size:0.9rem;}
+    .footer-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;align-items:center;}
+    .footer-links{display:flex;gap:26px;flex-wrap:wrap;}
+    .footer-links a{color:var(--dark-text-muted);}
+    .footer-links a:hover{color:#fff;text-decoration:underline;}
+    @media (max-width:880px){.about-grid{grid-template-columns:1fr;}}
+    @media (max-width:720px){.topbar{display:none;}.nav-links{display:none;}.hero{padding:72px 0 64px;}section{padding:60px 0;}.contact-card{padding:30px;}.contact-card dl{grid-template-columns:1fr;gap:4px 0;}.contact-card dt{margin-top:14px;}}
   </style>
 </head>
 <body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+      <symbol id="i-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+      <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+      <symbol id="i-hammer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 12-8.5 8.5a2.12 2.12 0 1 1-3-3L12 9"/><path d="m17.64 15 3.18-3.18a2.74 2.74 0 0 0 0-3.88l-2.5-2.5a2.74 2.74 0 0 0-3.88 0L11.25 8.6a1 1 0 0 0 0 1.41l3.74 3.74a1 1 0 0 0 1.41 0z"/></symbol>
+      <symbol id="i-tools" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.66 5.66L17 9l3-3-3-3-3 3 .7.7-1.7 1.7"/><path d="M9.4 8.5 2.5 15.4a2.12 2.12 0 1 0 3 3l6.9-6.9"/><path d="M14.5 11.5 19 16l3-3-4.5-4.5z"/></symbol>
+      <symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c.5-.34 1.2-.18 1.5.36.35.66.7 1.84.7 3.68 0 5.5-3.5 11.5-10.4 13z"/><path d="M2 21c4.7-3.5 7.5-7 11-11"/></symbol>
+      <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-links">
+        <a class="topbar-link" href="tel:+447949830689"><svg class="icon icon-sm"><use href="#i-phone"/></svg>07949 830689</a>
+        <a class="topbar-link" href="mailto:billyvernonhandyman@gmail.com"><svg class="icon icon-sm"><use href="#i-mail"/></svg>billyvernonhandyman@gmail.com</a>
+      </div>
+      <span class="topbar-meta"><svg class="icon icon-sm"><use href="#i-clock"/></svg>Mon-Sat, 8am-6:30pm</span>
+    </div>
+  </div>
+
   <header class="site-header">
     <div class="container nav">
       <a href="#" class="logo" aria-label="Billy Vernon Handyman homepage">Billy Vernon Handyman</a>
@@ -84,29 +129,41 @@
       <h1>The big jobs and the small. Sorted.</h1>
       <p class="lede">A family-run handyman service covering Taunton and the wider Somerset area. From stonework and fencing to patios, driveways and the odd tip run — if it needs doing, we'll see it through.</p>
       <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Request a Quote</a>
-        <a href="tel:+447949830689" class="btn-secondary">Call 07949 830689</a>
+        <a href="#contact" class="btn-primary">Request a Quote <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg></a>
+        <a href="tel:+447949830689" class="btn-secondary"><svg class="icon icon-sm"><use href="#i-phone"/></svg>Call 07949 830689</a>
       </div>
       <div class="trust-row">
-        <span class="trust-item">Family run since 2020</span>
-        <span class="trust-item">Fully insured</span>
-        <span class="trust-item">Free, no-obligation quotes</span>
+        <span class="trust-item"><svg class="icon icon-sm"><use href="#i-check"/></svg>Family run since 2020</span>
+        <span class="trust-item"><svg class="icon icon-sm"><use href="#i-shield"/></svg>Fully insured</span>
+        <span class="trust-item"><svg class="icon icon-sm"><use href="#i-check"/></svg>Free, no-obligation quotes</span>
       </div>
     </div></section>
     <section class="section-soft" aria-labelledby="services-heading"><div class="container">
       <h2 id="services-heading">What we do</h2>
       <p class="section-lede">A proper handyman service with the range to take on whatever your home or garden needs — done well, done properly, done on time.</p>
       <div class="services">
-        <article class="service"><h3>Stonework &amp; brickwork</h3><p>Walls, repointing, garden features and brick fence foundations — solid, lasting work from someone who knows the trade.</p></article>
-        <article class="service"><h3>Fencing &amp; patios</h3><p>New fence panels, posts and gates, plus patio laying and repairs. We can supply the materials or work with what you've got.</p></article>
-        <article class="service"><h3>Garden clearances &amp; tip runs</h3><p>Big garden cuts, area clean-ups, weeding, and tip runs of any size. Leave the heavy lifting to us.</p></article>
+        <article class="service">
+          <span class="service-icon"><svg class="icon"><use href="#i-tools"/></svg></span>
+          <h3>Stonework &amp; brickwork</h3>
+          <p>Walls, repointing, garden features and brick fence foundations — solid, lasting work from someone who knows the trade.</p>
+        </article>
+        <article class="service">
+          <span class="service-icon"><svg class="icon"><use href="#i-hammer"/></svg></span>
+          <h3>Fencing &amp; patios</h3>
+          <p>New fence panels, posts and gates, plus patio laying and repairs. We can supply the materials or work with what you've got.</p>
+        </article>
+        <article class="service">
+          <span class="service-icon"><svg class="icon"><use href="#i-leaf"/></svg></span>
+          <h3>Garden clearances &amp; tip runs</h3>
+          <p>Big garden cuts, area clean-ups, weeding, and tip runs of any size. Leave the heavy lifting to us.</p>
+        </article>
       </div>
     </div></section>
     <section aria-labelledby="about-heading"><div class="container"><div class="about-grid">
       <div>
         <h2 id="about-heading">About Billy Vernon Handyman</h2>
         <p class="section-lede">We're a family-based business that started up in 2020, with Billy bringing years of building trade experience to every job. Whether it's a quick afternoon's repair or a multi-day project, we treat every customer's home like our own.</p>
-        <p><a href="#contact">Get in touch &rarr;</a></p>
+        <p><a href="#contact">Get in touch <svg class="icon icon-sm" style="vertical-align:middle"><use href="#i-arrow-right"/></svg></a></p>
       </div>
       <aside class="about-stats" aria-label="At a glance">
         <div class="stat"><strong>5+</strong><span>Years in business</span></div>
@@ -119,10 +176,14 @@
       <h2 id="contact-heading">Get in touch</h2>
       <p class="section-lede">Pop us a ring or send a message — we&rsquo;re happy to chat about your project, no obligation.</p>
       <div class="contact-card"><dl>
-        <dt>Telephone</dt><dd><a href="tel:+447949830689">07949 830689</a></dd>
-        <dt>Email</dt><dd><a href="mailto:billyvernonhandyman@gmail.com">billyvernonhandyman@gmail.com</a></dd>
-        <dt>Address</dt><dd>Taunton, Somerset, TA2</dd>
-        <dt>Area served</dt><dd>Taunton, Wellington, Ilminster and surrounding Somerset</dd>
+        <dt><svg class="icon"><use href="#i-phone"/></svg>Telephone</dt>
+        <dd><a href="tel:+447949830689">07949 830689</a></dd>
+        <dt><svg class="icon"><use href="#i-mail"/></svg>Email</dt>
+        <dd><a href="mailto:billyvernonhandyman@gmail.com">billyvernonhandyman@gmail.com</a></dd>
+        <dt><svg class="icon"><use href="#i-map-pin"/></svg>Address</dt>
+        <dd>Taunton, Somerset, TA2</dd>
+        <dt><svg class="icon"><use href="#i-home"/></svg>Area served</dt>
+        <dd>Taunton, Wellington, Ilminster and surrounding Somerset</dd>
       </dl></div>
     </div></section>
   </main>
